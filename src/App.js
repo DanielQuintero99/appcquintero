@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import NabVar from "./components/NavBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+
+export default function App() {
+  // antes del return esta la logica, variables ,funciones etc
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  //dentro del return esta lo que se vera en al app,
+  //se usan fragments para evitar errores, por que el return espera 1 componente, por ejemplo si pongo dos divs seguidos me tira error. "<></>"
+  <>
+  <NabVar></NabVar>
+
+
+  </>
   );
 }
 
-export default App;
+
