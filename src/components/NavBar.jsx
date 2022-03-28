@@ -6,7 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropDown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Logo from '../../src/logos/GameShopOwl.png';  //  src/images
+import Logo from '../../src/logos/GameShopOwl.png';  
+import CartWidgetContainer from "./CartWidgetContainer";
 
 
 
@@ -45,6 +46,7 @@ export default function NavBar() {
         />
         <Button variant="outline-success">Search</Button>
       </Form>
+      <CartWidgetContainer/>
   </Navbar.Collapse>
   </Container>
 </Navbar>

@@ -1,6 +1,7 @@
 import React from "react"
 import NabVar from "./components/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ItemListContainer from "./components/ItemListContainer";
 
 
 export default function App() {
@@ -10,7 +11,7 @@ export default function App() {
   //se usan fragments para evitar errores, por que el return espera 1 componente, por ejemplo si pongo dos divs seguidos me tira error. "<></>"
   <>
   <NabVar></NabVar>
-
+  <ItemListContainer></ItemListContainer>
 
   </>
   );
