@@ -5,7 +5,7 @@ export default function ItemListContainer() {
   return (
   
   <>
-    <ItemCount />
+    <ItemCount stock={5} />
   </>
   );
 }
