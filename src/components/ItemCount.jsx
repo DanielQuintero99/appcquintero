@@ -22,14 +22,14 @@ export default function ItemCount({stock}) {
   return (
 
 <>
-    <div className="containerCount">
+    
     <div className="countCont">
-    <Button onClick={removeOne} variant="dark">-</Button>{' '}
+    <Button className="space" onClick={removeOne} variant="dark">-</Button>{' '}
     <p>{count}</p>
-    <Button onClick={add} variant="success">+</Button>{' '}
+    <Button className="space" onClick={add} variant="success">+</Button>{' '}
     </div>
     <Button onClick={onAdd} variant="warning">Añadir al Carrito</Button>{' '}
-    </div>
+   
 </>
   );
 }

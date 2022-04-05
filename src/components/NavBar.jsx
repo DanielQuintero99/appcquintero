@@ -7,7 +7,6 @@ import Logo from '../../src/logos/GameShopOwl.png';
 import CartWidget from "./CartWidget";
 
 
-
 export default function NavBar() {
 
   return (
