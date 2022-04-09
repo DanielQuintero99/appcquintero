@@ -1,7 +1,6 @@
 import React from 'react'
 import Item from './Item'
 
-
 export default function ItemList({prod}) {
   return (
     prod.map(product => {

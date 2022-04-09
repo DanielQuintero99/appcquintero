@@ -12,3 +12,21 @@ margin: 5px;
 .wrap{
     flex-wrap: wrap;
 }
+.CartWidgetCounter{
+    position:relative;
+    top: -20px;
+    padding-bottom:10%;
+    background:red;
+    border-radius:50%;
+  }
+  .CartWidgetCounter h4{
+    position:absolute;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
+    margin:0;
+    color:white;
+    font-size:12px;
+    background: red;
+    padding:2px 5px;
+    border-radius:50%;
+  }
