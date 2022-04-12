@@ -5,18 +5,19 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropDown";
 import Logo from '../../src/logos/GameShopOwl.png';
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
-          <Navbar.Brand href="#home">GameShop</Navbar.Brand>
+          <Link to={"./"} > <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" /> </Link>
+          <Navbar.Brand as ={Link} to="./">GameShop</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Home</Nav.Link>
+              <Nav.Link as ={Link} to="./" >Home</Nav.Link>
               <Nav.Link href="#pricing">About Us</Nav.Link>
               <Nav.Link href="#pricing">Contact Us</Nav.Link>
               <NavDropdown title="Categories" id="collasible-nav-dropdown">
