@@ -1,6 +1,8 @@
 import React from 'react'
-import { Card } from 'react-bootstrap';
-import ItemCount from './ItemCount.jsx';
+import { Card,Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+
 
 export default function Item({ id, price, name, image, description }) {
 
@@ -16,7 +18,7 @@ export default function Item({ id, price, name, image, description }) {
           <Card.Text>
             $ {price}
           </Card.Text>
-          <ItemCount stock={5} />
+          <Button as={Link} to={`/item/${id}`} variant="warning">Detalle</Button>{' '}
         </Card.Body>
       </Card>
     </>

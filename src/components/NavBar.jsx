@@ -13,20 +13,17 @@ export default function NavBar() {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Link to={"./"} > <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" /> </Link>
-          <Navbar.Brand as ={Link} to="./">GameShop</Navbar.Brand>
+          <Navbar.Brand as ={Link} to="./">Tk-Shop</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as ={Link} to="./" >Home</Nav.Link>
-              <Nav.Link href="#pricing">About Us</Nav.Link>
-              <Nav.Link href="#pricing">Contact Us</Nav.Link>
+              <Nav.Link as ={Link} to="./about-us">About Us</Nav.Link>
+              <Nav.Link as ={Link} to="./contact">Contact Us</Nav.Link>
               <NavDropdown title="Categories" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Pc</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Ps4</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Xbox</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Wii</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.5">Nintendo</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.6">Accessories</NavDropdown.Item>
+                <NavDropdown.Item as ={Link} to="./category/shirt">Shirt</NavDropdown.Item>
+                <NavDropdown.Item as ={Link} to="./category/hat">Hat</NavDropdown.Item>
+                <NavDropdown.Item as ={Link} to="./category/hoddie">Hoddie</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <CartWidget cant={0} />

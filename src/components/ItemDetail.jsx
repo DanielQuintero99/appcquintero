@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import ItemCount from './ItemCount'
 
 const ItemDetail = ({ prd }) => {
     return (
@@ -14,6 +15,7 @@ const ItemDetail = ({ prd }) => {
                     <Card.Text>
                         $ {prd.price}
                     </Card.Text>
+                    <ItemCount stock={5}/>
                 </Card.Body>
             </Card>
         </>
