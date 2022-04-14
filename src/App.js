@@ -15,18 +15,15 @@ export default function App() {
     <BrowserRouter>
     <NabVar/>
     <Routes> 
-      <Route path="/" element={<ItemListContainer/>} />
-      <Route path="/about-us" element={<About/>} />
-      <Route path="/contact" element={<Contact/>} />
-      <Route path="/category/:category" element={<ItemListContainer/>} />
-      <Route path="/item/:id" element={<ItemDetailContainer/>} />
+      <Route exact path="/" element={<ItemListContainer/>} />
+      <Route exact path="/about-us" element={<About/>} />
+      <Route exact path="/contact" element={<Contact/>} />
+      <Route exact path="/category/:category" element={<ItemListContainer/>} />
+      <Route exact path="/item/:id" element={<ItemDetailContainer/>} />
       </Routes>
     </BrowserRouter>
   </>
   );
 }
 
-// como poner de forma dinamica las categorias en el navbar
-// como poner el loading para cada peticion de datos
-// preguntar por el warning de memory leaks
 
