@@ -7,6 +7,8 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import NotFound from "./components/NotFound";
+import Cart from "./components/Cart";
 
 export default function App() {
 
@@ -20,6 +22,8 @@ export default function App() {
       <Route exact path="/contact" element={<Contact/>} />
       <Route exact path="/category/:category" element={<ItemListContainer/>} />
       <Route exact path="/item/:id" element={<ItemDetailContainer/>} />
+      <Route exact path="cart" element={<Cart/>} />
+      <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   </>

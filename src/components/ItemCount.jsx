@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { Button } from "react-bootstrap";
 
-export default function ItemCount({ stock, addToCart }) {
+export default function ItemCount({ stock, addToCart }) {    
     const [count, setCount] = useState(0);
     function add() {
         setCount(count + 1);

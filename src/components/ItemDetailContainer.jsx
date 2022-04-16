@@ -6,6 +6,7 @@ import { CustomFetchFind } from "../data/Fetch";
 
 
 const ItemDetailContainer = () => {
+  
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();

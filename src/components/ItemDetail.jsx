@@ -1,13 +1,16 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card,Button } from 'react-bootstrap'
 import ItemCount from './ItemCount'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const ItemDetail = ({ prd }) => {
     const[add,setAdd]=useState(0);
+    const[displayButtonCart,setDisplayButtonCart]=useState(true);
   function onAdd(num) {
     alert("Added to cart " + num + " items");
     setAdd(num);
+    setDisplayButtonCart(false);
     console.log(add);
 }
     return (
@@ -22,7 +25,9 @@ const ItemDetail = ({ prd }) => {
                     <Card.Text>
                         $ {prd.price}
                     </Card.Text>
-                    <ItemCount addToCart={onAdd} stock={5}/>
+                    {
+                        displayButtonCart ? <ItemCount addToCart={onAdd} stock={5}/> : <Link to ={"/cart"} ><Button className="btn btn-primary">ir a Carrito</Button></Link>
+                    }
                 </Card.Body>
             </Card>
         </>
