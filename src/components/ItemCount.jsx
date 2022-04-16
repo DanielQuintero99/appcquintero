@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { Button } from "react-bootstrap";
 
-export default function ItemCount({ stock }) {
+export default function ItemCount({ stock, addToCart }) {
     const [count, setCount] = useState(0);
     function add() {
         setCount(count + 1);
@@ -16,11 +16,7 @@ export default function ItemCount({ stock }) {
             setCount(0);
         }
     }
-    function onAdd() {
-        alert("Added to cart " + count + " items");
-        setCount(count + count);
-        console.log(count);
-    }
+
     return (
         <>
             <div className="countCont">
@@ -28,7 +24,7 @@ export default function ItemCount({ stock }) {
                 <p>{count}</p>
                 <Button className="space" onClick={add} variant="success">+</Button>{' '}
             </div>
-            <Button onClick={onAdd} variant="warning">Añadir al Carrito</Button>{' '}
+            <Button onClick={()=>addToCart(count)} variant="warning">Añadir al Carrito</Button>{' '}
         </>
     );
 }
