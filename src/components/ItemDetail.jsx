@@ -11,7 +11,6 @@ const ItemDetail = ({ prd }) => {
     alert("Added to cart " + num + " items");
     setAdd(num);
     setDisplayButtonCart(false);
-    console.log(add);
 }
     return (
         <>
@@ -26,7 +25,7 @@ const ItemDetail = ({ prd }) => {
                         $ {prd.price}
                     </Card.Text>
                     {
-                        displayButtonCart ? <ItemCount addToCart={onAdd} stock={5}/> : <Link to ={"/cart"} ><Button className="btn btn-primary">ir a Carrito</Button></Link>
+                        displayButtonCart ? <ItemCount addToCart={onAdd} stock={5}/> : <Link to ={"/cart"} ><Button  className="btn btn-primary">ir a Carrito</Button></Link>
                     }
                 </Card.Body>
             </Card>
