@@ -26,7 +26,7 @@ export default function NavBar() {
                 <NavDropdown.Item as ={Link} to="./category/hoddie">Hoddie</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <CartWidget cant={0} />
+            <CartWidget/>
           </Navbar.Collapse>
         </Container>
       </Navbar>

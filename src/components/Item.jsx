@@ -2,8 +2,6 @@ import React from 'react'
 import { Card,Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
-
 export default function Item({ id, price, name, image, description }) {
 
   return (

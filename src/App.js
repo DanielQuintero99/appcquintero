@@ -9,11 +9,14 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import NotFound from "./components/NotFound";
 import Cart from "./components/Cart";
+import MusicContainer from "./components/instruments/MusicContainer";
+import CartContextProvider from "./components/CartContext";
 
 export default function App() {
 
   return (
   <>
+  <CartContextProvider>
     <BrowserRouter>
     <NabVar/>
     <Routes> 
@@ -23,9 +26,11 @@ export default function App() {
       <Route exact path="/category/:category" element={<ItemListContainer/>} />
       <Route exact path="/item/:id" element={<ItemDetailContainer/>} />
       <Route exact path="cart" element={<Cart/>} />
+      <Route path="play" element={<MusicContainer/>} />
       <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
+  </CartContextProvider>
   </>
   );
 }

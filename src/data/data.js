@@ -5,7 +5,8 @@ const products =[
         category:"hat",
         price: 100,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolor sit amet consectetur adipiscing elit "
+        description: "lorem ipsum dolor sit amet consectetur adipiscing elit" ,
+        stock:9
     },
     {
         id: 2,
@@ -13,7 +14,8 @@ const products =[
         category:"hat",
         price: 200,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolo sit amet consectetur adipiscing elit "
+        description: "lorem ipsum dolo sit amet consectetur adipiscing elit ",
+        stock:12
     },
     {
         id: 3,
@@ -21,7 +23,8 @@ const products =[
         category:"hat",
         price: 300,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolor sit ame consectetur adipiscing elit "
+        description: "lorem ipsum dolor sit ame consectetur adipiscing elit ",
+        stock:5
     },
     {
         id: 4,
@@ -29,7 +32,8 @@ const products =[
         category:"shirt",
         price: 100,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolor sit amet consectetur adipiscing elit "
+        description: "lorem ipsum dolor sit amet consectetur adipiscing elit" ,
+        stock:3
     },
     {
         id: 5,
@@ -37,7 +41,8 @@ const products =[
         category:"shirt",
         price: 200,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolo sit amet consectetur adipiscing elit "
+        description: "lorem ipsum dolo sit amet consectetur adipiscing elit ",
+        stock:3
     },
     {
         id: 6,
@@ -45,7 +50,8 @@ const products =[
         category:"shirt",
         price: 300,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolor sit ame consectetur adipiscing elit "
+        description: "lorem ipsum dolor sit ame consectetur adipiscing elit ", 
+        stock:1
     },
     {
         id: 7,
@@ -53,7 +59,8 @@ const products =[
         category:"hoddie",
         price: 100,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolor sit amet consectetur adipiscing elit "
+        description: "lorem ipsum dolor sit amet consectetur adipiscing elit",
+        stock:8
     },
     {
         id: 8,
@@ -61,7 +68,8 @@ const products =[
         category:"hoddie",
         price: 200,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolo sit amet consectetur adipiscing elit "
+        description: "lorem ipsum dolo sit amet consectetur adipiscing elit ",
+        stock:6
     },
     {
         id: 9,
@@ -69,7 +77,8 @@ const products =[
         category:"hoddie",
         price: 300,
         image: "https://picsum.photos/200/300 ",
-        description: "lorem ipsum dolor sit ame consectetur adipiscing elit "
+        description: "lorem ipsum dolor sit ame consectetur adipiscing elit ",        
+        stock:3
     },
 ] 
 export default products;
