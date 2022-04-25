@@ -31,9 +31,22 @@ const CartContextProvider = ({ children }) => {
         }
 
     }
+    const addOne=(id,stock)=>{
+        const index = cart.findIndex(cartItem => cartItem.id === id);
+        if (index !== -1) {
+            let newCart = [...cart];
+            newCart[index].count++;
+            if (newCart[index].count > stock) {
+                newCart[index].count = stock;
+            }
+            setCart(newCart);
+        }
+    }
+    
     const buyAll = () => {
         setCart([]);
     }
+    
 
     useEffect(() => {
         let total = 0;
@@ -59,13 +72,10 @@ const CartContextProvider = ({ children }) => {
         } else {
             setDisplayCart(true);
         }
-    }, [cart]);
-
-
-    
+    }, [cart]);  
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, buyAll, removeOne, total, displayCart,cartWidget,displayCartWidget}}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, buyAll, removeOne,addOne, total, displayCart,cartWidget,displayCartWidget}}>
             {children}
         </CartContext.Provider>
     )

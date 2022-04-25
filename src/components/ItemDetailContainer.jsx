@@ -11,7 +11,7 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
-    CustomFetchFind(2000, id)
+    CustomFetchFind(0, id)
       .then(result => setProduct(result))
       .then(() => setIsLoading(false));
 
