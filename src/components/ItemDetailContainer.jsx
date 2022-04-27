@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
-import { CustomFetchFind } from "../data/Fetch";
-
+import {doc,getDoc,getFirestore} from "firebase/firestore"
 
 const ItemDetailContainer = () => {
   
@@ -11,10 +10,11 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
-    CustomFetchFind(0, id)
-      .then(result => setProduct(result))
-      .then(() => setIsLoading(false));
-
+    let db=getFirestore();
+    const item=doc(db,"products",id);
+    getDoc(item).then((res)=>{
+     let oneItem={id:res.id, ...res.data()} 
+     setProduct(oneItem)}).then(()=>setIsLoading(false));
   }, [id]);
 
   return (

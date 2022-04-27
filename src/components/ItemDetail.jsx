@@ -13,9 +13,9 @@ const ItemDetail = ({ prd }) => {
     return (
         <>
             <Card className='space' key={prd.id} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={prd.image} />
+                <Card.Img variant="top" src={prd.imageId} />
                 <Card.Body className='d-flex flex-column'>
-                    <Card.Title>{prd.name}</Card.Title>
+                    <Card.Title>{prd.tittle}</Card.Title>
                     <Card.Text>
                         {prd.description}
                     </Card.Text>

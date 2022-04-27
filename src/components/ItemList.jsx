@@ -8,8 +8,8 @@ export default function ItemList({prod}) {
         <Item key={product.id} 
         id={product.id} 
         price={product.price} 
-        name={product.name} 
-        image={product.image} 
+        tittle={product.tittle} 
+        imageId={product.imageId} 
         description={product.description}/>
         )
     })

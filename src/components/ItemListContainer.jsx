@@ -1,22 +1,28 @@
-import React, { useEffect } from "react"
-import { useState } from "react"
+import React, { useEffect,useState } from "react"
 import { Spinner } from "react-bootstrap";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-import { CustomFetchFilter } from "../data/Fetch";
+import {collection,getDocs, getFirestore} from "firebase/firestore"
+
 
 export default function ItemListContainer() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { category } = useParams();
+  const { categoryId } = useParams();
+  
 
   useEffect(() => {
-    setIsLoading(true);
-    CustomFetchFilter(2000, category)
-      .then(result => setItems(result))
-      .then(() => setIsLoading(false));
-  }, [category]);
-
+    setIsLoading(true)
+    const db =getFirestore();
+    const products=collection(db,"products");
+    getDocs(products).then((res)=>{
+      // a map is made to the response of the promise where the data acquired from firebase is transformed and set in such a way that it is understandable in js, by means of a spread where item.id is the id that is taken from the object brought from fb and item.data is the rest of the properties of the object.
+      let collect=res.docs.map(item=>({id:item.id,...item.data()}));
+      let filter=collect.filter(items=>items.categoryId===categoryId);
+      categoryId? setItems(filter):setItems(collect)    
+    }).then(()=>setIsLoading(false));
+   }, [categoryId]);
+   
   return (
 
     <>
@@ -34,7 +40,7 @@ export default function ItemListContainer() {
             :
             <>
               <div className="mainTitle">
-                {category ? <h1>{category[0].toUpperCase() + category.slice(1)}</h1> : <h1>All Products</h1>}
+                {categoryId ? <h1>{categoryId[0].toUpperCase() + categoryId.slice(1)}</h1> : <h1>All Products</h1>}
               </div>
               <ItemList prod={items} />
             </>

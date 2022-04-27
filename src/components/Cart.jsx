@@ -26,7 +26,7 @@ const Cart = () => {
                   cart.map(item => (
                     <tr key={item.id}>
                       <td>{item.count}</td>
-                      <td>{item.name}</td>
+                      <td>{item.tittle}</td>
                       <td> <Container className='countCont'> <Button variant='dark' onClick={() => removeOne(item.id)}>-</Button> <Button variant="danger" onClick={() => removeFromCart(item.id)} >X</Button> <Button variant="success" onClick={() => addOne(item.id,item.stock)}>+</Button></Container> </td>
                       <td>{item.price*item.count}</td>
                     </tr>
