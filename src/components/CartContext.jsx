@@ -45,6 +45,7 @@ const CartContextProvider = ({ children }) => {
     
     const buyAll = () => {
         setCart([]);
+        setTotal(0)
     }
     
 

@@ -11,6 +11,8 @@ import NotFound from "./components/NotFound";
 import Cart from "./components/Cart";
 import MusicContainer from "./components/instruments/MusicContainer";
 import CartContextProvider from "./components/CartContext";
+import CheckOut from "./components/CheckOut";
+
 
 export default function App() {
 
@@ -26,6 +28,7 @@ export default function App() {
       <Route exact path="/category/:categoryId" element={<ItemListContainer/>} />
       <Route exact path="/item/:id" element={<ItemDetailContainer/>} />
       <Route exact path="cart" element={<Cart/>} />
+      <Route exact path="checkout" element={<CheckOut/>}/>
       <Route path="play" element={<MusicContainer/>} />
       <Route path="*" element={<NotFound/>} />
       </Routes>

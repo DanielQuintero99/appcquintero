@@ -20,7 +20,9 @@ export default function ItemListContainer() {
       let collect=res.docs.map(item=>({id:item.id,...item.data()}));
       let filter=collect.filter(items=>items.categoryId===categoryId);
       categoryId? setItems(filter):setItems(collect)    
-    }).then(()=>setIsLoading(false));
+    }).then(()=>setIsLoading(false)).catch((err) => {
+      alert(err)
+  });
    }, [categoryId]);
    
   return (

@@ -4,7 +4,7 @@ import { CartContext } from './CartContext'
 import { Table, Container,Button,Stack, Row } from 'react-bootstrap';
 
 const Cart = () => {
-  const { cart, removeFromCart, buyAll, removeOne,total,displayCart,addOne } = useContext(CartContext);
+  const { cart, removeFromCart, removeOne,total,displayCart,addOne } = useContext(CartContext);
   return (
     <>
       <div>
@@ -40,11 +40,12 @@ const Cart = () => {
                 </tr>
               </tbody>
             </Table>
-            <Button variant="warning" onClick={() => buyAll()}>Buy All</Button>
+            <Link to ="/checkout"> <Button variant="warning" >Proced to Checkout</Button></Link> 
+            <Link to ="/"> <Button variant="dark" >Do you want to buy something else?</Button></Link> 
           </div>
             :
             <Container className=" d-flex flex-column align-items-center ">
-              <Row  >
+              <Row>
               <h1>Cart is empty</h1>
               </Row>
               <Row>
