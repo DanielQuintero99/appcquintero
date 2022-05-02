@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { CartContext } from './CartContext'
 import { Form, Button, Container,Table } from 'react-bootstrap';
-import { addDoc, collection, getFirestore } from "firebase/firestore"
+import { addDoc, collection, getDoc, getFirestore, serverTimestamp,doc } from "firebase/firestore"
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
@@ -11,19 +11,18 @@ const CheckOut = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [adress, setAdress] = useState("");
+    const [date, setDate] = useState("");
     const [showBill, setShowBill] = useState(false);
     const [order, setOrder] = useState("")
     const [newTotal, setNewTotal] = useState(0)
     const [newCart, setNewCart] = useState([]);
     const { cart, total, buyAll } = useContext(CartContext);
 
-
     let buyer = {
-        buyer: { name: name, email: email, phone: phone, adress: adress },
+        buyer: { name: name, email: email, phone: phone, adress: adress, time:serverTimestamp() },
         items: cart,
         total: total
     }
-
 
     let handleSubmit = (e) => {
         e.preventDefault();
@@ -105,9 +104,15 @@ const CheckOut = () => {
                                 setNewTotal(total);
                                 setOrder(orderRecive);
                                 setNewCart(cart);
+                                const orderInfo=doc(db,`sells`, orderRecive);
+                                getDoc(orderInfo).then((res)=>{
+                                  let date=new Date(res.data().buyer.time.seconds*1000);
+                                    setDate(date.toLocaleDateString());
+                                })                           
                             }).catch((err) => {
                                 console.log(err)
                             })
+                            
                             buyAll();
                         }
                     })
@@ -116,8 +121,9 @@ const CheckOut = () => {
                 }
             })
         }
-
+       
     }
+
 
     return (
         <>{
@@ -142,14 +148,23 @@ const CheckOut = () => {
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>What's Your Name?</Form.Label>
                                 <Form.Control type="text" placeholder="Type Your Name and Surname" value={name} onChange={(e) => { setName(e.currentTarget.value) }} />
-                            </Form.Group>
+                                <Form.Text className="text-muted">
+                                    Name and Surname are required ( Example: jhon doe)
+                                </Form.Text>
+                           </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Phone Number</Form.Label>
                                 <Form.Control type="text" placeholder="Type Your Phone Number" value={phone} onChange={(e) => { setPhone(e.currentTarget.value) }} />
+                                <Form.Text className="text-muted">
+                                    Only numbers are allowed no space (Example: 34654789)
+                                </Form.Text>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Address</Form.Label>
                                 <Form.Control type="text" placeholder="Adress" value={adress} onChange={(e) => { setAdress(e.currentTarget.value) }} />
+                                <Form.Text className="text-muted">
+                                    Please write your full address (Example: Av. Siempre Viva, 123, 456)
+                                </Form.Text>
                             </Form.Group>
                             <Button variant="primary" type="submit" >
                                 Submit
@@ -166,7 +181,7 @@ const CheckOut = () => {
                         </div>
                         <div className='billBody'>
                             <p> Purchase Order : {order} </p>
-                            <p> Date : { } </p>
+                            <p> Date (D/M/Y) : {date} </p>
                             <p> Name : {name} </p>
                             <p> Email : {email} </p>
                             <p> Phone : {phone} </p>
