@@ -3,6 +3,8 @@ import { CartContext } from './CartContext'
 import { GiShoppingCart } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 
+
+
 export default function CartWidget() {
 const {cartWidget,displayCartWidget}=useContext(CartContext)
   return (

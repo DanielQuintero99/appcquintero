@@ -3,12 +3,14 @@ import { CartContext } from './CartContext'
 import { Form, Button, Container,Table } from 'react-bootstrap';
 import { addDoc, collection, getDoc, getFirestore, serverTimestamp,doc } from "firebase/firestore"
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginContext } from './LogContext';
 
 
 const CheckOut = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const[password,setPassword]=useState("");
     const [phone, setPhone] = useState("");
     const [adress, setAdress] = useState("");
     const [date, setDate] = useState("");
@@ -16,17 +18,28 @@ const CheckOut = () => {
     const [order, setOrder] = useState("")
     const [newTotal, setNewTotal] = useState(0)
     const [newCart, setNewCart] = useState([]);
+    const [sigIn, setSigIn] = useState(false);
     const { cart, total, buyAll } = useContext(CartContext);
-
+    const {signUp,logIn} =useContext(LoginContext);
+    const navigate=useNavigate();
+   
     let buyer = {
-        buyer: { name: name, email: email, phone: phone, adress: adress, time:serverTimestamp() },
+        buyer: { 
+            name: name, 
+            email: email,
+            phone: phone, 
+            adress: adress, 
+            time:serverTimestamp() },
         items: cart,
         total: total
     }
 
-    let handleSubmit = (e) => {
-        e.preventDefault();
+    let handleSignIn = () => {
+        sigIn ? setSigIn(false) : setSigIn(true)
+    }
 
+    let handleSubmit = async (e) => {
+        e.preventDefault();
         console.log(buyer)
         const regexEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
         const regexPhone = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
@@ -37,14 +50,6 @@ const CheckOut = () => {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Do not forget to fill in all the fields!',
-            })
-            return;
-        }
-        if (cart.length === 0) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Your cart is empty!',
             })
             return;
         }
@@ -80,6 +85,16 @@ const CheckOut = () => {
             })
             return;
         } else {
+            try {
+                await signUp( email,password);
+               } catch (error) {
+                   Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.message,
+                   })
+                     return;
+               }
             Swal.fire({
                 title: 'Are your personal data correctly defined?',
                 text: `Name: ${name} \n Email: ${email} \n Phone: ${phone} \n Adress: ${adress}`,
@@ -88,6 +103,89 @@ const CheckOut = () => {
                 confirmButtonText: 'Yes',
                 denyButtonText: `No, take me back to the form`,
             }).then((result) => {
+                if (result.isConfirmed) {  
+                    if (cart.length === 0) {
+                        Swal.fire({
+                            icon:'success',
+                            title: 'Your account has been created!',
+                            text: 'You can now see the store and start shopping!',
+                        })
+                        navigate("/")
+                        return;
+                    }else{
+                        Swal.fire({
+                            title: 'Thank you!',
+                            text: 'Your order has been sent!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                setShowBill(true);
+                                const db = getFirestore();
+                                const orders = collection(db, "sells");
+                                addDoc(orders, buyer).then((res) => {
+                                    let orderRecive = res.id;
+                                    setNewTotal(total);
+                                    setOrder(orderRecive);
+                                    setNewCart(cart);
+                                    const orderInfo=doc(db,`sells`, orderRecive);
+                                    getDoc(orderInfo).then((res)=>{
+                                      let date=new Date(res.data().buyer.time.seconds*1000);
+                                        setDate(date.toLocaleDateString());
+                                    })                           
+                                }).catch((err) => {
+                                    console.log(err)
+                                })
+                                buyAll();
+                            }
+                        })
+                    }              
+
+                } else if (result.isDenied) {
+                    Swal.fire('Write your info', '', 'info');
+                }
+            })
+        }
+    }
+
+    let handleLogIn = async (e) => {
+        e.preventDefault();       
+        const regexEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+        
+        if (email === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Do not forget to fill in all the fields!',
+            })
+            return;
+        }
+
+        if (email !== "" && !regexEmail.test(email)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please verify your Email',
+            })
+            return;
+        } else {
+            try {
+                await logIn( email,password);
+               } catch (error) {
+                   Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.message,
+                   })
+                     return;
+               }
+            Swal.fire({
+                icon: 'success',
+                title: 'You successfully logged in!',
+                text: `Email: ${email}`,
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                if(cart.length>0){
                 if (result.isConfirmed) {
                     Swal.fire({
                         title: 'Thank you!',
@@ -118,12 +216,12 @@ const CheckOut = () => {
                     })
                 } else if (result.isDenied) {
                     Swal.fire('Write your info', '', 'info');
+                }}else{
+                    navigate("/");
                 }
             })
         }
-       
     }
-
 
     return (
         <>{
@@ -132,12 +230,14 @@ const CheckOut = () => {
                     <section className="left">
                         <div>
                             <h1>Life has great moments</h1>
-                            <p>Allow us to get to know you a little better </p>
+                            <p>Please LogIn/SignUp to finish </p>
                         </div>
                         <h3>Thank You!</h3>
                     </section>
                     <section className='right'>
-                        <Form onSubmit={handleSubmit}>
+                        {!sigIn ? 
+                        <><Form onSubmit={handleSubmit}>
+                            <h3>SignUp</h3>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => { setEmail(e.currentTarget.value) }} />
@@ -166,10 +266,46 @@ const CheckOut = () => {
                                     Please write your full address (Example: Av. Siempre Viva, 123, 456)
                                 </Form.Text>
                             </Form.Group>
-                            <Button variant="primary" type="submit" >
-                                Submit
-                            </Button>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Set your Password</Form.Label>
+                                <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => {setPassword(e.currentTarget.value) }} />
+                                <Form.Text className="text-muted">
+                                    Please write your full address (Example: Av. Siempre Viva, 123, 456)
+                                </Form.Text>
+                            </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
                         </Form>
+                        
+                        <Button onClick={handleSignIn} variant="dark" type="submit" >
+                                    I already have an account
+                                </Button>    
+                                </>: 
+                                <>
+                                <Form onSubmit={handleLogIn}>
+                            <h3>SignIn</h3>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => { setEmail(e.currentTarget.value) }} />
+                                <Form.Text className="text-muted">
+                                    We'll never share your email with anyone else.
+                                </Form.Text>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Paasword</Form.Label>
+                                <Form.Control type="password" placeholder="TypeYourPassword" value={password} onChange={(e) => { setPassword(e.currentTarget.value) }} />
+                            </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                        </Form>
+                        
+                        <Button onClick={handleSignIn} variant="dark" type="submit" >
+                                   SignIn
+                                </Button>  
+                                </>
+                            }
                     </section>
                 </Container>
                 :

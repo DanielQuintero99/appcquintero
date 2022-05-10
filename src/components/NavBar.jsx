@@ -6,6 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropDown";
 import Logo from '../../src/logos/GameShopOwl.png';
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import LogWidget from "./LogWidget";
 
 export default function NavBar() {
   return (
@@ -27,6 +28,7 @@ export default function NavBar() {
               </NavDropdown>
             </Nav>
             <CartWidget/>
+            <LogWidget/>
           </Navbar.Collapse>
         </Container>
       </Navbar>

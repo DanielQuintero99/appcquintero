@@ -12,13 +12,17 @@ import Cart from "./components/Cart";
 import MusicContainer from "./components/instruments/MusicContainer";
 import CartContextProvider from "./components/CartContext";
 import CheckOut from "./components/CheckOut";
+import LogContext from "./components/LogContext";
+
+
 
 
 export default function App() {
 
   return (
   <>
-  <CartContextProvider>
+  <LogContext>
+   <CartContextProvider>
     <BrowserRouter>
     <NabVar/>
     <Routes> 
@@ -34,6 +38,7 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   </CartContextProvider>
+  </LogContext>
   </>
   );
 }
