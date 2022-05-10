@@ -25,6 +25,8 @@ const CheckOut = () => {
     const { signUp, logIn, user } = useContext(LoginContext);
     const navigate = useNavigate();
 
+    // SI ENTRO SIN LOGEAR Y COMRPO, NO ME VALIDA LOS CAMPOS DE PHONE NI ADRESS
+
     function sendOrder() {
         setShowBill(true);
         const db = getFirestore();
@@ -241,8 +243,10 @@ const CheckOut = () => {
     let handleLogIn = async (e) => {
         e.preventDefault();
         const regexEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-
-        if (email === "") {
+        const regexPhone = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+        const regexAdress = /^[a-zA-Z0-9\s,'-]*$/;
+        
+        if ( email === "" || phone === "" || adress === "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -250,7 +254,6 @@ const CheckOut = () => {
             })
             return;
         }
-
         if (email !== "" && !regexEmail.test(email)) {
             Swal.fire({
                 icon: 'error',
@@ -258,7 +261,43 @@ const CheckOut = () => {
                 text: 'Please verify your Email',
             })
             return;
-        } else {
+        }
+
+        if (phone !== "" && !regexPhone.test(phone)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please verify your phone',
+            })
+            return;
+        }
+        if (adress !== "" && !regexAdress.test(adress)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please verify your address',
+            })
+            return;
+        }
+
+        // if (email === "") {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Do not forget to fill in all the fields!',
+        //     })
+        //     return;
+        // }
+
+        // if (email !== "" && !regexEmail.test(email)) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Please verify your Email',
+        //     })
+        //     return;
+        // } 
+        else {
             try {
                 await logIn(email, password);
             } catch (error) {
