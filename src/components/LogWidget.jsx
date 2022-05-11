@@ -29,7 +29,6 @@ const LogWidget = () => {
             })
         
     }
-    console.log(user)
   return (
     <>
         {user?<> <FiUserCheck size="40px" color="white" ></FiUserCheck><Button onClick={()=>handleLogOut()} variant="warning">X</Button></>: <><Link to={"/checkOut"} ><FiUserX size="40px" color="white" /></Link></>}

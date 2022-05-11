@@ -25,7 +25,6 @@ const CheckOut = () => {
     const { signUp, logIn, user } = useContext(LoginContext);
     const navigate = useNavigate();
 
-    // SI ENTRO SIN LOGEAR Y COMRPO, NO ME VALIDA LOS CAMPOS DE PHONE NI ADRESS
 
     function sendOrder() {
         setShowBill(true);
@@ -93,6 +92,7 @@ const CheckOut = () => {
         const regexPhone = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
         const regexName = /^(([A-Za-z]+[-']?)*([A-Za-z]+)?\s)+([A-Za-z]+[-']?)*([A-Za-z]+)?$/;
         const regexAdress = /^[a-zA-Z0-9\s,'-]*$/;
+
         if (name === "" || email === "" || phone === "" || adress === "") {
             Swal.fire({
                 icon: 'error',
@@ -278,26 +278,7 @@ const CheckOut = () => {
                 text: 'Please verify your address',
             })
             return;
-        }
-
-        // if (email === "") {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Do not forget to fill in all the fields!',
-        //     })
-        //     return;
-        // }
-
-        // if (email !== "" && !regexEmail.test(email)) {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Please verify your Email',
-        //     })
-        //     return;
-        // } 
-        else {
+        }else {
             try {
                 await logIn(email, password);
             } catch (error) {
@@ -351,7 +332,7 @@ const CheckOut = () => {
                         </Button>
                     </section>
                     <section className='right'>
-                        <>
+                            <>
                         <Form>
                             <h2>Shippin Information</h2>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -368,9 +349,9 @@ const CheckOut = () => {
                                     Please write your full address (Example: Av. Siempre Viva, 123, 456)
                                 </Form.Text>
                             </Form.Group>
-                            {user? <Button onClick={finishWhenLogIn} variant="dark" type="submit" >
+                            {user && <Button onClick={finishWhenLogIn} variant="dark" type="submit" >
                                 Finish
-                            </Button> : ""}
+                            </Button>}
 
                         </Form>
                         </>
@@ -404,7 +385,7 @@ const CheckOut = () => {
                                     </Button>
                                 </Form>
                             </> :
-                            user ? "" :
+                            !user&&
                                 <>
                                     <Form onSubmit={handleLogIn}>
                                         <h3>SignIn</h3>
@@ -465,7 +446,6 @@ const CheckOut = () => {
                             <Link to={"/"}><Button>Back to Home</Button></Link>
                         </div>
                     </div>
-
                 </Container>
         }
         </>
