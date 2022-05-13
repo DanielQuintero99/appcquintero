@@ -41,7 +41,7 @@ export default function ItemListContainer() {
             </div>
             :
             <>
-              <div className="mainTitle">
+              <div className="mainTitle ">
                 {categoryId ? <h1>{categoryId[0].toUpperCase() + categoryId.slice(1)}</h1> : <h1>All Products</h1>}
               </div>
               <ItemList prod={items} />

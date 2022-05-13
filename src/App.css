@@ -60,6 +60,8 @@ margin: 5px;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin-top: 3.5rem;
+    color: #bba55c;
   }
   .keys {
     display: flex;

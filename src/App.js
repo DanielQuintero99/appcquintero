@@ -16,6 +16,7 @@ import Music from "./components/instruments/Music";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
 import Order from "./components/Order"
+import Footer from "./components/Footer";
 
 
 
@@ -43,6 +44,7 @@ export default function App() {
       <Route path="/order/:id" element={<Order/>} />
       <Route path="*" element={<NotFound/>} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   </CartContextProvider>
   </LogContext>
