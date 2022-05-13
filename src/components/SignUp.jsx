@@ -36,12 +36,12 @@ export const SignUp = (
 										<div className="section text-center">
 											 <h4 >Shippin Data</h4>
 											<div className="form-group">
-												<input type="text" name="Address" className="form-style" placeholder="Your Address" id="adress" autocomplete="off" 
+												<input type="text" name="Address" className="form-style" placeholder="Your Address" id="adress"  
 												value={adress} onChange={(e) => { setAdress(e.currentTarget.value) }}/>
 												<i className="input-icon uil uil-user"></i>
 											</div>	
 											<div className="form-group mt-2">
-												<input type="text" name="phoneNumber" className="form-style" placeholder="Your Phone Number" id="phoneNumber" autocomplete="off"
+												<input type="text" name="phoneNumber" className="form-style" placeholder="Your Phone Number" id="phoneNumber" 
 												value={phone} onChange={(e) => { setPhone(e.currentTarget.value) }} />
 												<i className="input-icon uil uil-at"></i>
 											</div> 
@@ -65,7 +65,7 @@ export const SignUp = (
 					<Form className="section pb-5 pt-5 pt-sm-2 text-center">
 						<h6 className="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
 			          	<input className="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-			          	<label for="reg-log"></label>
+			          	<label htmlFor="reg-log"></label>
 						<div className="card-3d-wrap mx-auto">
 							<div className="card-3d-wrapper">
 								<div className="card-front">
@@ -73,12 +73,12 @@ export const SignUp = (
 										<div className="section text-center">
 											<h4 className="mb-4 pb-3">Log In</h4>
 											<div className="form-group">
-												<input type="email" name="logemail" className="form-style" placeholder="Your Email" id="logemail" autocomplete="off"
+												<input type="email" name="logemail" className="form-style" placeholder="Your Email" id="logemail" 
 												value={email} onChange={(e) => { setEmail(e.currentTarget.value) }} />
 												<i className="input-icon uil uil-at"></i>
 											</div>	
 											<div className="form-group mt-2">
-												<input type="password" name="logpass" className="form-style" placeholder="Your Password" id="logpass" autocomplete="off"
+												<input type="password" name="logpass" className="form-style" placeholder="Your Password" id="logpass" 
 												value={password} onChange={(e) => { setPassword(e.currentTarget.value) }}/>
 												<i className="input-icon uil uil-lock-alt"></i>
 											</div>
@@ -92,17 +92,17 @@ export const SignUp = (
 										<div className="section text-center">
 											<h4 className="mb-4 pb-3">Sign Up</h4>
 											<div className="form-group">
-												<input type="text" name="logname" className="form-style" placeholder="Your Full Name" id="logname" autocomplete="off"
+												<input type="text" name="logname" className="form-style" placeholder="Your Full Name" id="logname" 
 												value={name} onChange={(e) => {setName(e.currentTarget.value)}}/>
 												<i className="input-icon uil uil-user"></i>
 											</div>	
 											<div className="form-group mt-2">
-												<input type="email" name="logemail" className="form-style" placeholder="Your Email" id="logemail" autocomplete="off"
+												<input type="email" name="logemail" className="form-style" placeholder="Your Email" id="signInEmail" 
 												value={email} onChange={(e) => { setEmail(e.currentTarget.value) }} />
 												<i className="input-icon uil uil-at"></i>
 											</div>	
 											<div className="form-group mt-2">
-												<input type="password" name="logpass" className="form-style" placeholder="Set Your Password" id="logpass" autocomplete="off"
+												<input type="password" name="sigInpass" className="form-style" placeholder="Set Your Password" id="sigInpass" 
 												value={password} onChange={(e) => { setPassword(e.currentTarget.value) }}/>
 												<i className="input-icon uil uil-lock-alt"></i>
 											</div>

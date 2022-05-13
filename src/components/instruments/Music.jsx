@@ -5,7 +5,7 @@ const Music = () => {
   
   return (
     <>
-    <div className="keys">
+    {/* <div className="keys">
     <div data-key="65" className="key">
       <kbd>A</kbd>
 
@@ -56,7 +56,8 @@ const Music = () => {
   <audio data-key="74" src="sounds/7.wav"></audio>
   <audio data-key="75" src="sounds/8.wav"></audio>
   <audio data-key="76" src="sounds/9.wav"></audio>
-  <audio data-key="192" src="sounds/0.wav"></audio>
+  <audio data-key="192" src="sounds/0.wav"></audio> */}
+  <div className='mainTitle'><h1>Seccion en Mantenimiento, intentalo mas tarde</h1></div>
     </>
   )
 }

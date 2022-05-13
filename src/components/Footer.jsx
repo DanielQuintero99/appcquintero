@@ -4,6 +4,7 @@ import {BsMusicNoteList} from 'react-icons/bs'
 import LogWidget from './LogWidget'
 import CartWidget from './CartWidget'
 import LogOutWidget from './LogOutWidget'
+import { Link } from 'react-router-dom'
 
 
 
@@ -14,7 +15,9 @@ const Footer = () => {
     <Container>
       <LogWidget/>
       <CartWidget/>
-      <BsMusicNoteList size={'20px'}/>
+      <Link to={"/play"}>
+      <BsMusicNoteList color='black' size={'20px'}/>
+      </Link>
       <LogOutWidget/>
     </Container>
   </Navbar>
