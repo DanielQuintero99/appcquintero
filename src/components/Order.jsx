@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { getDoc,getFirestore,doc } from 'firebase/firestore'
 import { Card,Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -19,10 +19,11 @@ const Order = () => {
      let oneOrder={id:res.id, ...res.data()} 
       setOrder(oneOrder)})
   }, [id]);
-  console.log(items)
   return (
     <>
-    {
+    { id!==order.id ?
+    <Navigate to='/'/>
+    :
       order.id ?
       <>
       <p>Order Id: {order.id}</p>
@@ -52,6 +53,7 @@ const Order = () => {
       <p>Date:{new Date(order.buyer.time.seconds *1000).toLocaleString()}</p>
       </>
       :<p>Loading...</p>
+      
     }
     </>
   )

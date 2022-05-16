@@ -19,9 +19,6 @@ import Order from "./components/Order"
 import Footer from "./components/Footer";
 
 
-
-
-
 export default function App() {
 
   return (

@@ -290,7 +290,8 @@ const CheckOut = () => {
                         </tbody>
                     </Table>
                     <p> Total : {newTotal} </p>
-                    <Link to={"/"}><Button>Back to Home</Button></Link>
+                    <Link to={"/"}><Button className='space'>Back to Home</Button></Link>
+                    <Link to={"/orders"}><Button className='space'>View Orders</Button></Link>
                 </div>
             </div>
         </Container>

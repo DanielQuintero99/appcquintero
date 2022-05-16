@@ -3,14 +3,16 @@ import { Container } from 'react-bootstrap';
 import { LoginContext } from './LogContext';
 import Logo from '../../src/logos/Owl.png';
 import { Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const Profile = () => {
-    const { user } = useContext(LoginContext)
-   
+    const { user } = useContext(LoginContext);
+
     return (
         <>
-            {user ?
+            {!user ?
+            <Navigate to='/checkOut' />:
+            user?
                 <Container>
                     <h1>Profile</h1>
                     <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
@@ -22,8 +24,6 @@ const Profile = () => {
                             </div>
                             <div className="text mt-3"> <span>Hi {user.displayName}!<br />
                                 We want to take a little space in your profile to remind you what a wonderful person you are, plus you have a great style with Shiro&Kuro</span>
-                            </div>
-                            <div className="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i className="fa fa-twitter"></i></span> <span><i className="fa fa-facebook-f"></i></span> <span><i className="fa fa-instagram"></i></span> <span><i className="fa fa-linkedin"></i></span>
                             </div>
                             <div className=" px-2 rounded mt-4 date "> <span className="join">Thanks a lot! 💗</span> </div> </div> </div>
                     </div>

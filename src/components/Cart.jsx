@@ -7,10 +7,10 @@ const Cart = () => {
   const { cart, removeFromCart, removeOne,total,displayCart,addOne } = useContext(CartContext);
   return (
     <>
-      <div>
+      <div className= 'mainTitle'>
         {
           displayCart ?
-          <div>
+          <div className='cartTable'>
             <h1>Cart</h1>
             <Table striped bordered hover>
               <thead>
@@ -27,7 +27,7 @@ const Cart = () => {
                     <tr key={item.id}>
                       <td>{item.count}</td>
                       <td>{item.tittle}</td>
-                      <td> <Container className='countCont'> <Button variant='dark' onClick={() => removeOne(item.id)}>-</Button> <Button variant="danger" onClick={() => removeFromCart(item.id)} >X</Button> <Button variant="success" onClick={() => addOne(item.id,item.stock)}>+</Button></Container> </td>
+                      <td> <Container className='countCont'> <Button variant='dark' onClick={() => removeOne(item.id)}>-</Button> <Button variant="danger" onClick={() => removeFromCart(item.id)} >x</Button> <Button variant="success" onClick={() => addOne(item.id,item.stock)}>+</Button></Container> </td>
                       <td>{item.price*item.count}</td>
                     </tr>
                   ))
