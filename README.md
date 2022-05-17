@@ -1,4 +1,5 @@
 # TcT-Store
+![Animation](https://user-images.githubusercontent.com/96450363/168924963-9b8b6353-c323-4bad-aa43-a1600e39ea85.gif)
 
 Welcome to this project, it is an online clothing store, below you will find important information to understand it a little better.
 
