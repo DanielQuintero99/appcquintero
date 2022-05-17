@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { CartContext } from './CartContext'
 import { Button, Container, Table } from 'react-bootstrap';
-import { addDoc, collection, getDoc, getFirestore, serverTimestamp, doc} from "firebase/firestore"
+import { addDoc, collection, getDoc, getFirestore, serverTimestamp, doc } from "firebase/firestore"
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from './LogContext';
-import { getAuth,updateProfile } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
 import { SignUp } from './SignUp';
 
 
@@ -86,8 +86,8 @@ const CheckOut = () => {
         e.preventDefault();
         const regexEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
         const regexName = /^(([A-Za-z]+[-']?)*([A-Za-z]+)?\s)+([A-Za-z]+[-']?)*([A-Za-z]+)?$/;
-    
-        if (name === "" || email === "" ) {
+
+        if (name === "" || email === "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -111,24 +111,24 @@ const CheckOut = () => {
             })
             return;
         } else {
-                 await signUp(email, password);
-                const auth = getAuth()
-                 await updateProfile(auth.currentUser, {
-                    displayName: name 
-                }).then(() => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'You have successfully signed up! Welcome to the family!',
-                    })
-                }).catch((error) => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: error.message,
-                    })
-                });
-                return;
+            await signUp(email, password);
+            const auth = getAuth()
+            await updateProfile(auth.currentUser, {
+                displayName: name
+            }).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'You have successfully signed up! Welcome to the family!',
+                })
+            }).catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+                })
+            });
+            return;
         }
     }
     let finishWhenLogIn = (e) => {
@@ -167,18 +167,18 @@ const CheckOut = () => {
                 confirmButtonText: 'Yes',
                 denyButtonText: `No, take me back to the form`,
             }).then((result) => {
-                if (result.isConfirmed) {                    
-                        Swal.fire({
-                            title: 'Thank you!',
-                            text: 'Your order has been sent!',
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                sendOrder()
-                            }
-                        })
-                } 
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Thank you!',
+                        text: 'Your order has been sent!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            sendOrder()
+                        }
+                    })
+                }
             })
         }
     }
@@ -186,7 +186,7 @@ const CheckOut = () => {
         e.preventDefault();
         const regexEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
-        if ( email === "" ) {
+        if (email === "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -201,7 +201,7 @@ const CheckOut = () => {
                 text: 'Please verify your Email',
             })
             return;
-        }else {
+        } else {
             try {
                 await logIn(email, password);
             } catch (error) {
@@ -236,66 +236,66 @@ const CheckOut = () => {
 
     return (
         <>
-        {!showBill?           
-               <SignUp 
-                phone={phone} 
-                setPhone={setPhone} 
-                adress={adress}
-                setAdress={setAdress}
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                name={name}
-                setName={setName}
-                setPassword={setPassword}
-                finishWhenLogIn={finishWhenLogIn}
-                handleLogIn={handleLogIn}
-                handleSubmit={handleSubmit}
-                user={user}
-                cart={cart}
-               />  
-                            
-            :
-            <Container className=' customContainer d-flex justify-content-center align-items-center'>
-            <div className='bill'>
-                <div className='bill-header'>
-                    <h1>Your Bill</h1>
-                    <h4>Thank you for your purchase!</h4>
-                </div>
-                <div className='billBody'>
-                    <p> Purchase Order : {order} </p>
-                    <p> Date (D/M/Y) : {date} </p>
-                    <p> Name : {user?user.displayName:name} </p>
-                    <p> Email : {user?user.email:email} </p>
-                    <p> Phone : {phone} </p>
-                    <p> Address : {adress} </p>
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Amount</th>
-                                <th>Product</th>
-                                <th>Partial Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                newCart.map(item => (
-                                    <tr key={item.id}>
-                                        <td>{item.count}</td>
-                                        <td>{item.tittle}</td>
-                                        <td>{item.price * item.count}</td>
+            {!showBill ?
+                <SignUp
+                    phone={phone}
+                    setPhone={setPhone}
+                    adress={adress}
+                    setAdress={setAdress}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    name={name}
+                    setName={setName}
+                    setPassword={setPassword}
+                    finishWhenLogIn={finishWhenLogIn}
+                    handleLogIn={handleLogIn}
+                    handleSubmit={handleSubmit}
+                    user={user}
+                    cart={cart}
+                />
+
+                :
+                <Container className=' customContainer d-flex justify-content-center align-items-center'>
+                    <div className='bill'>
+                        <div className='bill-header'>
+                            <h1>Your Bill</h1>
+                            <h4>Thank you for your purchase!</h4>
+                        </div>
+                        <div className='billBody'>
+                            <p> Purchase Order : {order} </p>
+                            <p> Date (D/M/Y) : {date} </p>
+                            <p> Name : {user ? user.displayName : name} </p>
+                            <p> Email : {user ? user.email : email} </p>
+                            <p> Phone : {phone} </p>
+                            <p> Address : {adress} </p>
+                            <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Product</th>
+                                        <th>Partial Price</th>
                                     </tr>
-                                ))
-                            }
-                        </tbody>
-                    </Table>
-                    <p> Total : {newTotal} </p>
-                    <Link to={"/"}><Button className='space'>Back to Home</Button></Link>
-                    <Link to={"/orders"}><Button className='space'>View Orders</Button></Link>
-                </div>
-            </div>
-        </Container>
-        }
+                                </thead>
+                                <tbody>
+                                    {
+                                        newCart.map(item => (
+                                            <tr key={item.id}>
+                                                <td>{item.count}</td>
+                                                <td>{item.tittle}</td>
+                                                <td>{item.price * item.count}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </Table>
+                            <p> Total : {newTotal} </p>
+                            <Link to={"/"}><Button className='space'>Back to Home</Button></Link>
+                            <Link to={"/orders"}><Button className='space'>View Orders</Button></Link>
+                        </div>
+                    </div>
+                </Container>
+            }
         </>
     )
 }

@@ -10,7 +10,8 @@ export default function ItemList({prod}) {
         price={product.price} 
         tittle={product.tittle} 
         imageId={product.imageId} 
-        description={product.description}/>
+        // description={product.description}
+        />
         )
     })
   )

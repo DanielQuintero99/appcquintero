@@ -40,41 +40,11 @@ export default function NavBar() {
                     <NavDropdown.Item as={Link} to="./category/hoddie">Hoddie</NavDropdown.Item>
                   </NavDropdown>                
                 </Nav>
-                {/* <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form> */}
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
         </Navbar>
       ))}
-      {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
-          <Link to={"./"} > <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" /> </Link>
-          <Navbar.Brand as ={Link} to="./">Tk-Shop</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as ={Link} to="./" >Home</Nav.Link>
-              <Nav.Link as ={Link} to="./about-us">About Us</Nav.Link>
-              <Nav.Link as ={Link} to="./contact">Contact Us</Nav.Link>
-              <NavDropdown title="Categories" id="collasible-nav-dropdown">
-                <NavDropdown.Item as ={Link} to="./category/shirt">Shirt</NavDropdown.Item>
-                <NavDropdown.Item as ={Link} to="./category/hat">Hat</NavDropdown.Item>
-                <NavDropdown.Item as ={Link} to="./category/hoddie">Hoddie</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <CartWidget/>
-            <LogWidget/>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
     </>
   );
 }

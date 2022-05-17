@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Button } from "react-bootstrap";
 
 
-export default function ItemCount({ stock, addToCart, prd,handleClick}) {   
+export default function ItemCount({ stock, addToCart, prd, handleClick }) {
     const [count, setCount] = useState(0);
     function add() {
         setCount(count + 1);
@@ -17,14 +17,14 @@ export default function ItemCount({ stock, addToCart, prd,handleClick}) {
             setCount(0);
         }
     }
-    const [disable,setDisable]=useState(true); 
+    const [disable, setDisable] = useState(true);
     useEffect(() => {
-     if(count===0){
-         setDisable(false);
-     }else{
-         setDisable(true);
-     }
-      }, [count,disable])
+        if (count === 0) {
+            setDisable(false);
+        } else {
+            setDisable(true);
+        }
+    }, [count, disable])
     return (
         <>
             <div className="countCont">
@@ -32,10 +32,10 @@ export default function ItemCount({ stock, addToCart, prd,handleClick}) {
                 <p>{count}</p>
                 <Button className="space" onClick={add} variant="success">+</Button>
             </div>{
-               disable?<Button onClick={()=>{addToCart({...prd,count}); handleClick();}} variant="warning">Añadir al Carrito</Button>:<Button variant="warning" disabled >Añadir al Carrito</Button>
-        }
+                disable ? <Button onClick={() => { addToCart({ ...prd, count }); handleClick(); }} variant="warning">Añadir al Carrito</Button> : <Button variant="warning" disabled >Añadir al Carrito</Button>
+            }
         </>
-     );
-    
+    );
+
 }
 

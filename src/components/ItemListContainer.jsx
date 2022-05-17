@@ -44,7 +44,9 @@ export default function ItemListContainer() {
               <div className="mainTitle ">
                 {categoryId ? <h1>{categoryId[0].toUpperCase() + categoryId.slice(1)}</h1> : <h1>All Products</h1>}
               </div>
+              <div className="itemList wrap d-flex justify-content-around mt-2">
               <ItemList prod={items} />
+              </div>
             </>
         }
 

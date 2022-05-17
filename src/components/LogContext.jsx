@@ -1,5 +1,5 @@
-import React,{createContext,useEffect,useState} from 'react'
-import { 
+import React, { createContext, useEffect, useState } from 'react'
+import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
@@ -7,23 +7,23 @@ import {
 } from 'firebase/auth'
 import { auth } from '../index'
 
-export const LoginContext=createContext()
+export const LoginContext = createContext()
 
-const LogContext = ({children}) => {
+const LogContext = ({ children }) => {
     const [user, setUser] = useState(null);
-    const signUp =(email,password)=>createUserWithEmailAndPassword(auth,email,password)
-    const logIn=(email,password)=>signInWithEmailAndPassword(auth,email,password)
+    const signUp = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+    const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
     useEffect(() => {
-        onAuthStateChanged(auth,currentUser=>{
+        onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
         })
     }, []);
-    const logOut=()=> signOut(auth)
-  return (
-    <LoginContext.Provider value={{signUp,logIn,user,logOut}}>
-        {children}
-    </LoginContext.Provider>
-  )
+    const logOut = () => signOut(auth)
+    return (
+        <LoginContext.Provider value={{ signUp, logIn, user, logOut }}>
+            {children}
+        </LoginContext.Provider>
+    )
 }
 
 export default LogContext

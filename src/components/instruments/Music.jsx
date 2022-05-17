@@ -57,7 +57,7 @@ const Music = () => {
   <audio data-key="75" src="sounds/8.wav"></audio>
   <audio data-key="76" src="sounds/9.wav"></audio>
   <audio data-key="192" src="sounds/0.wav"></audio> */}
-  <div className='mainTitle'><h1>Seccion en Mantenimiento, intentalo mas tarde</h1></div>
+  <div className='mainTitle'><h1>Section Music under Maintenance,please try again later.</h1></div>
     </>
   )
 }
