@@ -257,7 +257,7 @@ const CheckOut = () => {
 
                 :
                 <Container className=' customContainer d-flex justify-content-center align-items-center'>
-                    <div className='bill'>
+                    <div className='bill marginTop'>
                         <div className='bill-header'>
                             <h1>Your Bill</h1>
                             <h4>Thank you for your purchase!</h4>
